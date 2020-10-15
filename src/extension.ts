@@ -21,7 +21,7 @@ class VSMemory {
 	private update(statusBarItem: StatusBarItem) {
 		const config = workspace.getConfiguration('vscodemem');
 		// `Visual` is used because `Code` isnt listed
-		return find('name', 'Visual', true)
+		return find('name', 'code', true)
 			.then((list: any[]) => {
 				const pids = list.map(item => item && item.pid);
 				pidusage(pids, (err: Error, stats: any[]) => {
@@ -32,11 +32,13 @@ class VSMemory {
 					const totalBytes = Object.keys(stats).reduce((prev: any, key: any) => {
 						return prev + stats[key].memory;
 					}, 0);
-					const totalGB: any = ((totalBytes / 1e+9).toFixed(2));
-					const totalFree: any = ((this._totalMemory - os.freemem()) / 1e+9).toFixed(2);
+					const totalGB: any = ((totalBytes / 1.074e+9).toFixed(2));
+					const totalFree: any = ((this._totalMemory - os.freemem()) / 1.074e+9).toFixed(2);
+					const totalMem = ((this._totalMemory) / 1.074e+9).toFixed(2);
+
 					const difference: any = (totalFree - totalGB);
 
-					statusBarItem.text = `${difference < (totalGB - 3) ? `$(alert)` : ''} ${totalGB} of ${totalFree} GB`;
+					statusBarItem.text = `${difference < (totalGB - 3) ? `$(alert)` : ''} ${totalGB} of ${totalMem} GB`;
 					setTimeout(() => this.update(statusBarItem), config.get('frequency', 2000));
 				});
 			});
