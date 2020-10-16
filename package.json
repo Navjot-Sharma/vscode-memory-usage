@@ -1,10 +1,10 @@
 {
-    "name": "vscode-memory",
-    "displayName": "vscode-memory",
+    "name": "vscode-memory-custom",
+    "displayName": "Custom Memory/Time",
     "description": "Shows how much memory vscode is currently consuming",
     "version": "1.0.0",
-    "publisher": "seripap",
-    "repository": "https://github.com/seripap/vscode-memory",
+    "publisher": "navjot",
+    "repository": "https://github.com/Navjot-Sharma/vscode-memory",
     "engines": {
         "vscode": "^1.31.0"
     },
@@ -18,13 +18,18 @@
     "contributes": {
         "configuration": {
             "type": "object",
-            "title": "vscode-memory configuration",
+            "title": "vscode-memory-custom configuration",
             "properties": {
                 "vscodemem.frequency": {
                     "type": "number",
                     "default": 2000,
                     "minimum": 200,
                     "description": "How long in ms to update mem usage."
+                },
+                "vscodemem.showSeconds": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to show seconds."
                 }
             }
         }
@@ -34,14 +39,16 @@
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+        "test": "npm run compile && node ./node_modules/vscode/bin/test",
+        "package": "vsce package"
     },
     "devDependencies": {
         "typescript": "^3.3.1",
         "vscode": "^1.1.28",
         "tslint": "^5.12.1",
         "@types/node": "^10.12.21",
-        "@types/mocha": "^2.2.42"
+        "@types/mocha": "^2.2.42",
+        "vsce": "^1.53.0"
     },
     "dependencies": {
         "find-process": "^1.2.1",

@@ -4,8 +4,6 @@
     <Identity Version="1.0" Id="Navjot.Vscode.Memory" Language="us-en" Publisher="Navjot" />
     <DisplayName>VsCode Memory Usage</DisplayName>
     <Description>Displays memory used by vscode</Description>
-    <Icon>Images\mem.png</Icon>
-    <PreviewImage>Images\mem.png</PreviewImage>
     <Tags>memory, ram</Tags>
   </Metadata>
   

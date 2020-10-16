@@ -38,7 +38,13 @@ class VSMemory {
 
 					const difference: any = (totalFree - totalGB);
 
-					statusBarItem.text = `$(screen-normal) ${difference < (totalGB - 3) ? `$(alert)` : ''} ${totalGB} of ${totalMem} GB`;
+					statusBarItem.text = `$(screen-normal) ${difference < (totalGB - 3) ? `$(alert)` : ''} ${totalGB}/${totalMem} GB`;
+					const now = new Date();
+					let time = now.getHours() + ':' + now.getMinutes();
+					if (config.get('showSeconds')) {
+						time += ':' + now.getSeconds();
+					}
+					statusBarItem.text += `  $(watch) ${time}`;
 					setTimeout(() => this.update(statusBarItem), config.get('frequency', 2000));
 				});
 			});
